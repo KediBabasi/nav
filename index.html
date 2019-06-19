@@ -7,10 +7,13 @@
   <title>nav</title>
 </head>
 <body>
-  <a href="">asdasda</a>
+  <a href="#">asdasda</a>
 
   <script>
-  
+      var link = document.getElementsByTagName("a");
+      link.addEventListener("click", function(){
+        alert("Link works");
+      });
   </script>
   
 </body>
