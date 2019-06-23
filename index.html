@@ -4,17 +4,106 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>nav</title>
+  <title>js filter</title>
+  <style>
+    
+    a.nav-btn{
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+      padding: 10px 30px;
+      font-size: 16px;
+      font-family: monospace;
+      text-decoration: none;
+      color:rgb(119, 35, 35);
+    }
+    a.nav-btn.active{
+      color:#fff;
+      background: #e00000;
+      border: 1px solid #e00000
+    }
+    .banner-container{
+      display: block;
+      position: relative;
+      margin-top: 30px;
+    }
+    .banner{
+      font-family: monospace;
+      display:inline-block;
+      padding:5px 20px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      margin: 5px;
+    }
+    .hidden{
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <a href="#">asdasda</a>
+  <a href="#" class="nav-btn active" onclick="filterByType('all')">Tum Kampanyalar</a>
+  <a href="#" class="nav-btn" onclick="filterByType('eglence')">eglence</a>
+  <a href="#" class="nav-btn" onclick="filterByType('yemeicme')">yemeicme</a>
+  <a href="#" class="nav-btn" onclick="filterByType('alisveris')">alisveris</a>
 
-  <script>
-      var link = document.getElementsByTagName("a");
-      link.addEventListener("click", function(){
-        alert("Link works");
+
+  <div class="banner-container">
+
+    <div class="banner eglence">
+      <p>eglence 1</p>
+    </div>
+    <div class="banner eglence">
+      <p>eglence 2</p>
+    </div>
+    <div class="banner eglence">
+      <p>eglence 3</p>
+    </div>
+    <div class="banner yemeicme">
+        <p>yemeicme 1</p>
+    </div>
+    <div class="banner yemeicme">
+      <p>yemeicme 2</p>
+    </div>
+    <div class="banner yemeicme">
+      <p>yemeicme 3</p>
+    </div>
+    <div class="banner alisveris">
+      <p>alisveris 1</p>
+    </div>
+    <div class="banner alisveris">
+      <p>alisveris 2</p>
+    </div>
+    <div class="banner alisveris">
+      <p>alisveris 3</p>
+    </div>
+  </div>
+
+  
+
+<script>
+  
+  var banners = Array.from(document.querySelectorAll('.banner'));
+  var navbuttons = Array.from(document.querySelectorAll('.nav-btn'));
+
+  navbuttons.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      navbuttons.forEach(function (item) {item.classList.remove('active')});
+      this.classList.add('active');
+    });
+  });
+
+  function filterByType(type) {
+    if (type == 'all') {
+      banners.forEach(function (item) {item.classList.remove('hidden')});
+    } else {
+      banners.forEach(function (item) {item.classList.add('hidden')});
+      var elems = document.querySelectorAll('.' + type);
+      elems.forEach(function (item) {
+        if (item.classList.contains(type)) {item.classList.remove('hidden')}
       });
-  </script>
+    }
+  }
+</script>
   
 </body>
 </html>
